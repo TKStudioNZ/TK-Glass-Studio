@@ -1,0 +1,3422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TK Glass Studio — Agent Village</title>
+
+<style>
+/* =========================================================
+   TK GLASS STUDIO — AGENT VILLAGE
+   Single-file visual prototype
+   ========================================================= */
+
+:root {
+    --bg: #050b12;
+    --panel: #0b1420;
+    --panel-2: #101d2b;
+    --border: rgba(255,255,255,.10);
+    --text: #f4f8fc;
+    --muted: #8da0b2;
+
+    --blue: #20a4ff;
+    --cyan: #39d9ff;
+    --green: #39dc91;
+    --orange: #ffb340;
+    --pink: #ff5ebc;
+    --purple: #9c7cff;
+    --red: #ff6d78;
+
+    --marketing: #20a4ff;
+    --strategy: #ffb340;
+    --sales: #ff5ebc;
+    --design: #39d9ff;
+    --compliance: #39dc91;
+    --operations: #9c7cff;
+    --research: #8b8cff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    background:
+        radial-gradient(circle at 75% 10%, rgba(32,164,255,.10), transparent 25%),
+        radial-gradient(circle at 20% 80%, rgba(156,124,255,.08), transparent 25%),
+        #050b12;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    border-right: 1px solid var(--border);
+    background: rgba(5,12,20,.92);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 38px;
+}
+
+.logo-mark {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -5px;
+}
+
+.logo-text {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .13em;
+}
+
+.logo-sub {
+    display: block;
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: .16em;
+    margin-top: 3px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-button {
+    border: 0;
+    background: transparent;
+    color: #91a4b7;
+    padding: 12px 14px;
+    border-radius: 10px;
+    text-align: left;
+    transition: .2s;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    color: white;
+    background: #102337;
+}
+
+.nav-button.active {
+    box-shadow: inset 3px 0 var(--blue);
+}
+
+.nav-icon {
+    width: 24px;
+    display: inline-block;
+}
+
+.sidebar-spacer {
+    flex: 1;
+}
+
+.add-agent-sidebar {
+    border: 0;
+    padding: 13px;
+    border-radius: 10px;
+    background: linear-gradient(135deg,#1597ef,#3bc3ff);
+    color: #03101a;
+    font-weight: 800;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    height: 76px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    background: rgba(5,12,20,.75);
+    backdrop-filter: blur(20px);
+}
+
+.search {
+    width: min(560px,50vw);
+    height: 42px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    color: white;
+    padding: 0 15px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: var(--blue);
+}
+
+.top-status {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.live {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.content {
+    padding: 24px;
+    max-width: 1800px;
+    width: 100%;
+    margin: auto;
+}
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.page-heading h1 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: -.03em;
+}
+
+.page-heading p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.button {
+    border: 1px solid var(--border);
+    background: #0d1b29;
+    color: white;
+    padding: 9px 13px;
+    border-radius: 9px;
+}
+
+.button:hover {
+    border-color: var(--blue);
+}
+
+.button.primary {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #03111b;
+    font-weight: 800;
+}
+
+/* =========================================================
+   VILLAGE
+   ========================================================= */
+
+.village {
+    position: relative;
+    height: 610px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 40%, rgba(30,85,120,.35), transparent 35%),
+        linear-gradient(145deg,#081521,#07111c 65%,#040a10);
+
+    transition: .5s ease;
+}
+
+/* subtle floor */
+.village-floor {
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    background:
+        repeating-radial-gradient(
+            ellipse,
+            rgba(42,113,151,.16) 0,
+            rgba(42,113,151,.16) 1px,
+            transparent 1px,
+            transparent 45px
+        );
+    opacity: .7;
+}
+
+/* water */
+.water {
+    position: absolute;
+    inset: auto 0 0;
+    height: 75px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(13,105,143,.35),
+            rgba(3,35,51,.75)
+        );
+}
+
+/* central hub */
+.hub {
+    position: absolute;
+    left: 50%;
+    top: 51%;
+    transform: translate(-50%,-50%);
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,#16638d,#071b2b 70%);
+    border: 2px solid #2bb9ff;
+    box-shadow:
+        0 0 40px rgba(32,164,255,.25),
+        inset 0 0 35px rgba(32,164,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+}
+
+.hub strong {
+    display: block;
+    font-size: 30px;
+}
+
+.hub small {
+    font-size: 8px;
+    letter-spacing: .18em;
+    color: #a4d9ef;
+}
+
+/* =========================================================
+   DEPARTMENT BUILDINGS
+   ========================================================= */
+
+.department {
+    position: absolute;
+    width: 205px;
+    height: 145px;
+    cursor: pointer;
+    transition:
+        transform .35s,
+        opacity .35s,
+        filter .35s;
+    z-index: 10;
+}
+
+.department:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+.building {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    border: 1px solid var(--department-color);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,45,62,.95),
+            rgba(7,17,27,.95)
+        );
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.35),
+        0 0 25px color-mix(
+            in srgb,
+            var(--department-color) 12%,
+            transparent
+        );
+    overflow: hidden;
+}
+
+/* glass windows */
+.windows {
+    position: absolute;
+    inset: 42px 12px 12px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 6px;
+}
+
+.window {
+    border: 1px solid rgba(255,255,255,.12);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(60,150,200,.12),
+            rgba(255,255,255,.02)
+        );
+}
+
+/* roof */
+.roof {
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: -8px;
+    height: 52px;
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(in srgb,var(--department-color) 35%,#0a1621),
+            #08131e
+        );
+    border: 1px solid var(--department-color);
+    border-radius: 17px 17px 10px 10px;
+    transition:
+        transform .6s ease,
+        opacity .5s ease;
+    z-index: 4;
+}
+
+.department:hover .roof {
+    transform: translateY(-8px);
+}
+
+.department.open .roof {
+    transform:
+        translateY(-95px)
+        rotateX(65deg);
+    opacity: .2;
+}
+
+/* department label */
+.department-label {
+    position: absolute;
+    top: 7px;
+    left: 13px;
+    right: 13px;
+    z-index: 8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.department-count {
+    color: var(--department-color);
+}
+
+/* positions */
+
+.department.marketing {
+    left: 8%;
+    top: 11%;
+    --department-color: var(--marketing);
+}
+
+.department.strategy {
+    left: 42%;
+    top: 6%;
+    --department-color: var(--strategy);
+}
+
+.department.sales {
+    right: 8%;
+    top: 11%;
+    --department-color: var(--sales);
+}
+
+.department.design {
+    left: 8%;
+    bottom: 14%;
+    --department-color: var(--design);
+}
+
+.department.compliance {
+    right: 8%;
+    bottom: 14%;
+    --department-color: var(--compliance);
+}
+
+.department.operations {
+    left: 31%;
+    bottom: 4%;
+    --department-color: var(--operations);
+}
+
+.department.research {
+    right: 31%;
+    bottom: 4%;
+    --department-color: var(--research);
+}
+
+/* =========================================================
+   AGENTS
+   ========================================================= */
+
+.agent {
+    position: absolute;
+    width: 48px;
+    height: 65px;
+    z-index: 20;
+    transition:
+        left 2.5s ease,
+        top 2.5s ease,
+        transform .25s;
+    cursor: pointer;
+}
+
+.agent:hover {
+    transform: scale(1.12);
+}
+
+.agent-head {
+    position: absolute;
+    width: 35px;
+    height: 31px;
+    left: 7px;
+    top: 0;
+    border-radius: 12px 12px 10px 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fbff,
+            #9baebe
+        );
+
+    border: 2px solid #dce8f0;
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.35);
+}
+
+.agent-screen {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    left: 3px;
+    top: 7px;
+    border-radius: 7px;
+    background: #050c13;
+    border: 1px solid #4c6c82;
+}
+
+.agent-eye {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--agent-color);
+    box-shadow: 0 0 6px var(--agent-color);
+    top: 11px;
+}
+
+.agent-eye.left {
+    left: 8px;
+}
+
+.agent-eye.right {
+    left: 16px;
+}
+
+.agent-body {
+    position: absolute;
+    left: 8px;
+    top: 29px;
+    width: 33px;
+    height: 25px;
+    border-radius: 9px 9px 7px 7px;
+    background: #07090c;
+    border: 1px solid #202a31;
+}
+
+.agent-tk {
+    position: absolute;
+    left: 11px;
+    top: 7px;
+    font-size: 9px;
+    font-weight: 900;
+    color: white;
+}
+
+.agent-leg {
+    position: absolute;
+    width: 7px;
+    height: 10px;
+    background: #0b0d10;
+    top: 50px;
+}
+
+.agent-leg.left {
+    left: 13px;
+}
+
+.agent-leg.right {
+    left: 29px;
+}
+
+/* sneaker */
+.shoe {
+    position: absolute;
+    width: 15px;
+    height: 8px;
+    border-radius: 8px 7px 4px 4px;
+    background: var(--shoe-color);
+    border: 1px solid rgba(255,255,255,.6);
+    top: 58px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.shoe.left {
+    left: 5px;
+}
+
+.shoe.right {
+    left: 25px;
+}
+
+/* unique shoe styles */
+
+.shoe-red {
+    --shoe-color: #d72e38;
+}
+
+.shoe-blue {
+    --shoe-color: #2787d9;
+}
+
+.shoe-green {
+    --shoe-color: #38c68b;
+}
+
+.shoe-purple {
+    --shoe-color: #8664dc;
+}
+
+.shoe-white {
+    --shoe-color: #e8eef3;
+}
+
+.shoe-orange {
+    --shoe-color: #ef8732;
+}
+
+/* status animation */
+
+.agent.working {
+    animation: working 2.2s ease-in-out infinite;
+}
+
+.agent.idle {
+    opacity: .65;
+    animation: idle 4s ease-in-out infinite;
+}
+
+.agent.break {
+    opacity: .55;
+    animation: breaktime 4.5s ease-in-out infinite;
+}
+
+@keyframes working {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes idle {
+    0%,100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(3px) rotate(5deg);
+    }
+}
+
+@keyframes breaktime {
+    0%,100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(5px) rotate(4deg);
+    }
+}
+
+/* =========================================================
+   AGENT INFO
+   ========================================================= */
+
+.agent-card {
+    position: absolute;
+    display: none;
+    width: 220px;
+    padding: 14px;
+    background: rgba(7,16,26,.96);
+    border: 1px solid #31516a;
+    border-radius: 13px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.6);
+    z-index: 80;
+}
+
+.agent-card.show {
+    display: block;
+}
+
+.agent-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.agent-card h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.agent-role {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.agent-task {
+    margin-top: 12px;
+    padding: 9px;
+    background: #0e2030;
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+.status-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 4px 7px;
+    border-radius: 8px;
+    background: #123b30;
+    color: var(--green);
+    font-size: 9px;
+}
+
+/* =========================================================
+   BOTTOM DASHBOARD
+   ========================================================= */
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 12px;
+    margin-top: 13px;
+}
+
+.panel {
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    background: var(--panel);
+    padding: 14px;
+}
+
+.panel-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.panel-title strong {
+    font-size: 12px;
+}
+
+.panel-title span {
+    color: var(--blue);
+    font-size: 10px;
+}
+
+.activity {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255,255,255,.06);
+    font-size: 11px;
+}
+
+.activity:first-of-type {
+    border-top: 0;
+}
+
+.activity small {
+    color: var(--muted);
+}
+
+/* =========================================================
+   DEPARTMENT DETAIL MODE
+   ========================================================= */
+
+.department-view {
+    display: none;
+}
+
+.department-view.active {
+    display: block;
+}
+
+.village-view.hidden {
+    display: none;
+}
+
+.department-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.department-title {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.department-title-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: #123451;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+}
+
+.department-title h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.department-title p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* =========================================================
+   DEPARTMENT OFFICE
+   ========================================================= */
+
+.office {
+    position: relative;
+    height: 570px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(30,95,130,.24),
+            transparent 45%
+        ),
+        #07121d;
+
+    perspective: 1200px;
+}
+
+/* floor */
+.office-floor {
+    position: absolute;
+    inset: 8%;
+    transform:
+        rotateX(58deg)
+        translateY(70px);
+    border: 1px solid #2a536c;
+    background:
+        linear-gradient(
+            rgba(32,164,255,.06) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(32,164,255,.06) 1px,
+            transparent 1px
+        );
+    background-size: 35px 35px;
+}
+
+/* office furniture */
+.desk {
+    position: absolute;
+    width: 90px;
+    height: 42px;
+    border-radius: 7px;
+    background: #121b22;
+    border: 1px solid #2b3a45;
+    box-shadow: 0 12px 18px rgba(0,0,0,.35);
+    z-index: 4;
+}
+
+.monitor {
+    position: absolute;
+    width: 28px;
+    height: 18px;
+    background: #07111a;
+    border: 1px solid var(--blue);
+    left: 31px;
+    top: -11px;
+    box-shadow: 0 0 12px rgba(32,164,255,.18);
+}
+
+.plant {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #174d3c;
+    box-shadow: 8px -5px 0 #1b6548;
+    z-index: 3;
+}
+
+.lounge-area {
+    position: absolute;
+    right: 9%;
+    bottom: 10%;
+    width: 170px;
+    height: 95px;
+    border-radius: 18px;
+    background: #101b25;
+    border: 1px solid #263c4d;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* roof opening */
+.office-roof {
+    position: absolute;
+    inset: 0;
+    border: 12px solid rgba(40,75,94,.75);
+    pointer-events: none;
+    z-index: 30;
+    transition: .7s;
+}
+
+.office.roof-open .office-roof {
+    opacity: .25;
+    transform:
+        translateY(-40px)
+        rotateX(8deg);
+}
+
+/* =========================================================
+   RIGHT DEPARTMENT PANEL
+   ========================================================= */
+
+.office-layout {
+    display: grid;
+    grid-template-columns: 1fr 315px;
+    gap: 13px;
+}
+
+.control-panel {
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    background: var(--panel);
+    padding: 15px;
+    height: 570px;
+    overflow-y: auto;
+}
+
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-header h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.agent-count {
+    color: var(--blue);
+    font-size: 11px;
+}
+
+.control-add {
+    width: 100%;
+    margin: 12px 0;
+    padding: 11px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--blue);
+    color: #03111b;
+    font-weight: 800;
+}
+
+.agent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.agent-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,.07);
+    background: #0b1825;
+    border-radius: 10px;
+}
+
+.mini-bot {
+    width: 31px;
+    height: 31px;
+    border-radius: 9px;
+    background: linear-gradient(145deg,#fff,#94a6b4);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.mini-bot::after {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: 9px;
+    width: 17px;
+    height: 8px;
+    background: #07111a;
+    border-radius: 5px;
+}
+
+.agent-row-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.agent-row-info strong {
+    display: block;
+    font-size: 11px;
+}
+
+.agent-row-info span {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.agent-status {
+    font-size: 8px;
+}
+
+.agent-status.working {
+    color: var(--green);
+}
+
+.agent-status.idle {
+    color: var(--orange);
+}
+
+.edit-agent {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: #b9cad6;
+    border-radius: 6px;
+    padding: 5px 7px;
+    font-size: 9px;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: min(440px,100%);
+    background: #0b1724;
+    border: 1px solid #2c4c63;
+    border-radius: 17px;
+    padding: 20px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.7);
+}
+
+.modal-box h2 {
+    margin: 0 0 18px;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 13px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--muted);
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    border: 1px solid #2b465b;
+    background: #07121d;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .app {
+        grid-template-columns: 74px 1fr;
+    }
+
+    .sidebar {
+        padding: 18px 9px;
+    }
+
+    .logo-text,
+    .logo-sub,
+    .nav-label {
+        display: none;
+    }
+
+    .logo {
+        justify-content: center;
+    }
+
+    .logo-mark {
+        font-size: 35px;
+    }
+
+    .nav-button {
+        text-align: center;
+    }
+
+    .office-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .control-panel {
+        height: auto;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .app {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .topbar {
+        padding: 0 14px;
+    }
+
+    .search {
+        width: 55%;
+    }
+
+    .top-status span:not(.live) {
+        display: none;
+    }
+
+    .content {
+        padding: 14px;
+    }
+
+    .village {
+        height: 680px;
+    }
+
+    .department {
+        width: 150px;
+        height: 115px;
+    }
+
+    .department.marketing {
+        left: 3%;
+    }
+
+    .department.sales {
+        right: 3%;
+    }
+
+    .department.design {
+        left: 3%;
+        bottom: 18%;
+    }
+
+    .department.compliance {
+        right: 3%;
+        bottom: 18%;
+    }
+
+    .department.operations {
+        left: 8%;
+    }
+
+    .department.research {
+        right: 8%;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <div class="logo-mark">TK</div>
+
+        <div>
+            <div class="logo-text">GLASS STUDIO</div>
+            <span class="logo-sub">
+                PLAN · DESIGN · COMPLY · GROW
+            </span>
+        </div>
+    </div>
+
+    <nav class="nav">
+
+        <button class="nav-button active">
+            <span class="nav-icon">⌂</span>
+            <span class="nav-label">Dashboard</span>
+        </button>
+
+        <button class="nav-button">
+            <span class="nav-icon">◉</span>
+            <span class="nav-label">Agents</span>
+        </button>
+
+        <button class="nav-button">
+            <span class="nav-icon">✓</span>
+            <span class="nav-label">Tasks</span>
+        </button>
+
+        <button class="nav-button">
+            <span class="nav-icon">▣</span>
+            <span class="nav-label">Projects</span>
+        </button>
+
+        <button class="nav-button">
+            <span class="nav-icon">◇</span>
+            <span class="nav-label">Knowledge</span>
+        </button>
+
+        <button class="nav-button">
+            <span class="nav-icon">◒</span>
+            <span class="nav-label">Reports</span>
+        </button>
+
+        <button class="nav-button">
+            <span class="nav-icon">⚙</span>
+            <span class="nav-label">Settings</span>
+        </button>
+
+    </nav>
+
+    <div class="sidebar-spacer"></div>
+
+    <button class="add-agent-sidebar" id="sidebarAddAgent">
+        ＋ <span class="nav-label">Add Agent</span>
+    </button>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+<header class="topbar">
+
+    <input
+        class="search"
+        type="search"
+        placeholder="Search agents, tasks, projects..."
+        id="search"
+    >
+
+    <div class="top-status">
+
+        <span class="live">
+            <span class="live-dot"></span>
+            LIVE
+        </span>
+
+        <span>10 agents</span>
+
+        <span>12 active tasks</span>
+
+        <span>TK</span>
+
+    </div>
+
+</header>
+
+
+<div class="content">
+
+
+<!-- =====================================================
+     VILLAGE VIEW
+===================================================== -->
+
+<section id="villageView" class="village-view">
+
+    <div class="page-heading">
+
+        <div>
+            <h1>Agent Village</h1>
+
+            <p>
+                Your AI team lives, works and learns here.
+            </p>
+        </div>
+
+        <div class="action-buttons">
+
+            <button class="button" id="moveAgents">
+                ↻ Move Agents
+            </button>
+
+            <button class="button primary" id="addAgentButton">
+                ＋ Add Agent
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="village" id="village">
+
+        <div class="village-floor"></div>
+
+        <div class="water"></div>
+
+
+        <!-- CENTRAL HUB -->
+
+        <div class="hub">
+
+            <div>
+                <strong>TK</strong>
+                <small>GLASS STUDIO</small>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DEPARTMENTS
+        ================================================= -->
+
+        <div
+            class="department marketing"
+            data-department="Marketing"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>MARKETING</span>
+                    <span
+                        class="department-count"
+                        data-count="Marketing"
+                    >
+                        2
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="department strategy"
+            data-department="Strategy"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>STRATEGY</span>
+                    <span
+                        class="department-count"
+                        data-count="Strategy"
+                    >
+                        1
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="department sales"
+            data-department="Sales & Quotes"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>SALES & QUOTES</span>
+                    <span
+                        class="department-count"
+                        data-count="Sales & Quotes"
+                    >
+                        2
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="department design"
+            data-department="Design"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>DESIGN</span>
+                    <span
+                        class="department-count"
+                        data-count="Design"
+                    >
+                        2
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="department compliance"
+            data-department="Compliance"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>COMPLIANCE</span>
+                    <span
+                        class="department-count"
+                        data-count="Compliance"
+                    >
+                        1
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="department operations"
+            data-department="Operations"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>OPERATIONS</span>
+                    <span
+                        class="department-count"
+                        data-count="Operations"
+                    >
+                        1
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="department research"
+            data-department="Research"
+        >
+
+            <div class="building">
+
+                <div class="roof"></div>
+
+                <div class="department-label">
+                    <span>RESEARCH</span>
+                    <span
+                        class="department-count"
+                        data-count="Research"
+                    >
+                        1
+                    </span>
+                </div>
+
+                <div class="windows">
+
+                    <div class="window"></div>
+                    <div class="window"></div>
+                    <div class="window"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             AGENTS
+        ================================================= -->
+
+        <div
+            class="agent working"
+            data-name="Nova"
+            data-role="Google Ads Specialist"
+            data-department="Marketing"
+            data-task="Analysing Google Ads performance"
+            style="left:17%;top:27%;--agent-color:#20a4ff;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-red left"></div>
+            <div class="shoe shoe-red right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Orbit"
+            data-role="Campaign Strategist"
+            data-department="Marketing"
+            data-task="Building campaign strategy"
+            style="left:24%;top:22%;--agent-color:#20a4ff;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-blue left"></div>
+            <div class="shoe shoe-blue right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Atlas"
+            data-role="Strategy Agent"
+            data-department="Strategy"
+            data-task="Planning Waimarino project"
+            style="left:47%;top:18%;--agent-color:#ffb340;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-orange left"></div>
+            <div class="shoe shoe-orange right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Quinn"
+            data-role="Quote Specialist"
+            data-department="Sales & Quotes"
+            data-task="Preparing client quote"
+            style="left:78%;top:28%;--agent-color:#ff5ebc;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-pink left"></div>
+            <div class="shoe shoe-pink right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Milo"
+            data-role="Client Follow-up Agent"
+            data-department="Sales & Quotes"
+            data-task="Following up client enquiries"
+            style="left:84%;top:22%;--agent-color:#ff5ebc;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-white left"></div>
+            <div class="shoe shoe-white right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Pixel"
+            data-role="3D Design Agent"
+            data-department="Design"
+            data-task="Creating 3D balustrade visual"
+            style="left:18%;top:68%;--agent-color:#39d9ff;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-blue left"></div>
+            <div class="shoe shoe-blue right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Sketch"
+            data-role="Drawing Specialist"
+            data-department="Design"
+            data-task="Checking panel layout"
+            style="left:26%;top:73%;--agent-color:#39d9ff;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-purple left"></div>
+            <div class="shoe shoe-purple right"></div>
+
+        </div>
+
+
+        <div
+            class="agent working"
+            data-name="Sage"
+            data-role="Compliance Specialist"
+            data-department="Compliance"
+            data-task="Checking NZS 4223 requirements"
+            style="left:78%;top:68%;--agent-color:#39dc91;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-green left"></div>
+            <div class="shoe shoe-green right"></div>
+
+        </div>
+
+
+        <div
+            class="agent idle"
+            data-name="Bolt"
+            data-role="Operations Agent"
+            data-department="Operations"
+            data-task="Available — waiting for work"
+            style="left:40%;top:81%;--agent-color:#9c7cff;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-red left"></div>
+            <div class="shoe shoe-red right"></div>
+
+        </div>
+
+
+        <div
+            class="agent idle"
+            data-name="Echo"
+            data-role="Research Agent"
+            data-department="Research"
+            data-task="Reading the knowledge base"
+            style="left:66%;top:81%;--agent-color:#8b8cff;"
+        >
+
+            <div class="agent-head">
+                <div class="agent-screen"></div>
+                <div class="agent-eye left"></div>
+                <div class="agent-eye right"></div>
+            </div>
+
+            <div class="agent-body">
+                <span class="agent-tk">TK</span>
+            </div>
+
+            <div class="agent-leg left"></div>
+            <div class="agent-leg right"></div>
+
+            <div class="shoe shoe-orange left"></div>
+            <div class="shoe shoe-orange right"></div>
+
+        </div>
+
+
+        <div
+            class="agent-card"
+            id="agentCard"
+        ></div>
+
+    </div>
+
+
+    <!-- BOTTOM PANELS -->
+
+    <div class="bottom-grid">
+
+        <section class="panel">
+
+            <div class="panel-title">
+                <strong>LIVE AGENT ACTIVITY</strong>
+                <span>LIVE</span>
+            </div>
+
+            <div class="activity">
+                <span>Nova</span>
+                <small>Analysing Google Ads</small>
+            </div>
+
+            <div class="activity">
+                <span>Pixel</span>
+                <small>Creating 3D visual</small>
+            </div>
+
+            <div class="activity">
+                <span>Sage</span>
+                <small>Checking compliance</small>
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-title">
+                <strong>ACTIVE TASKS</strong>
+                <span>12</span>
+            </div>
+
+            <div class="activity">
+                <span>Balustrade quote</span>
+                <small>60%</small>
+            </div>
+
+            <div class="activity">
+                <span>Google Ads audit</span>
+                <small>40%</small>
+            </div>
+
+            <div class="activity">
+                <span>Design compliance</span>
+                <small>25%</small>
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <div class="panel-title">
+                <strong>VILLAGE STATUS</strong>
+                <span>ONLINE</span>
+            </div>
+
+            <div class="activity">
+                <span>Total agents</span>
+                <small id="totalAgents">10</small>
+            </div>
+
+            <div class="activity">
+                <span>Working</span>
+                <small id="workingAgents">8</small>
+            </div>
+
+            <div class="activity">
+                <span>Available</span>
+                <small id="idleAgents">2</small>
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DEPARTMENT DETAIL VIEW
+===================================================== -->
+
+<section
+    id="departmentView"
+    class="department-view"
+>
+
+    <div class="department-hero">
+
+        <div class="department-title">
+
+            <div
+                class="department-title-icon"
+                id="departmentIcon"
+            >
+                ▥
+            </div>
+
+            <div>
+
+                <h2 id="departmentTitle">
+                    Marketing
+                </h2>
+
+                <p id="departmentDescription">
+                    Attract · Engage · Grow
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="action-buttons">
+
+            <button
+                class="button"
+                id="backVillage"
+            >
+                ← Back to Village
+            </button>
+
+            <button
+                class="button"
+                id="openRoof"
+            >
+                ◇ Open View
+            </button>
+
+            <button
+                class="button primary"
+                id="detailAddAgent"
+            >
+                ＋ Add Agent
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="office-layout">
+
+        <div
+            class="office roof-open"
+            id="office"
+        >
+
+            <div class="office-floor"></div>
+
+            <div class="office-roof"></div>
+
+
+            <!-- DESKS -->
+
+            <div
+                class="desk"
+                style="left:15%;top:25%;"
+            >
+                <div class="monitor"></div>
+            </div>
+
+            <div
+                class="desk"
+                style="left:42%;top:23%;"
+            >
+                <div class="monitor"></div>
+            </div>
+
+            <div
+                class="desk"
+                style="left:65%;top:28%;"
+            >
+                <div class="monitor"></div>
+            </div>
+
+            <div
+                class="desk"
+                style="left:28%;top:53%;"
+            >
+                <div class="monitor"></div>
+            </div>
+
+            <div
+                class="desk"
+                style="left:55%;top:55%;"
+            >
+                <div class="monitor"></div>
+            </div>
+
+
+            <!-- PLANTS -->
+
+            <div
+                class="plant"
+                style="left:10%;top:18%;"
+            ></div>
+
+            <div
+                class="plant"
+                style="right:14%;top:19%;"
+            ></div>
+
+            <div
+                class="plant"
+                style="left:46%;bottom:14%;"
+            ></div>
+
+
+            <!-- LOUNGE -->
+
+            <div class="lounge-area">
+                ☕ Agent Lounge<br>
+                <span>Recharge · Think · Chill</span>
+            </div>
+
+
+            <!-- DETAIL AGENTS APPEAR HERE -->
+
+            <div id="officeAgents"></div>
+
+        </div>
+
+
+        <!-- CONTROL PANEL -->
+
+        <aside class="control-panel">
+
+            <div class="control-header">
+
+                <h3>Department Agents</h3>
+
+                <span
+                    class="agent-count"
+                    id="detailAgentCount"
+                >
+                    0 agents
+                </span>
+
+            </div>
+
+
+            <button
+                class="control-add"
+                id="panelAddAgent"
+            >
+                ＋ Add Agent to Department
+            </button>
+
+
+            <div
+                class="agent-list"
+                id="agentList"
+            ></div>
+
+
+            <div
+                class="panel"
+                style="margin-top:14px;"
+            >
+
+                <div class="panel-title">
+                    <strong>DEPARTMENT ACTIVITY</strong>
+                    <span>7 DAYS</span>
+                </div>
+
+                <div class="activity">
+                    <span>Tasks completed</span>
+                    <small>42</small>
+                </div>
+
+                <div class="activity">
+                    <span>Tasks active</span>
+                    <small>12</small>
+                </div>
+
+                <div class="activity">
+                    <span>Agents online</span>
+                    <small>7</small>
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- =====================================================
+     ADD / EDIT MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="agentModal"
+>
+
+    <div class="modal-box">
+
+        <h2 id="modalTitle">
+            Add Agent
+        </h2>
+
+
+        <div class="form-group">
+
+            <label>
+                Agent Name
+            </label>
+
+            <input
+                id="agentName"
+                placeholder="e.g. Quote Specialist"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Role
+            </label>
+
+            <input
+                id="agentRole"
+                placeholder="e.g. Google Ads Specialist"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Department
+            </label>
+
+            <select id="agentDepartment">
+
+                <option>Marketing</option>
+                <option>Strategy</option>
+                <option>Sales & Quotes</option>
+                <option>Design</option>
+                <option>Compliance</option>
+                <option>Operations</option>
+                <option>Research</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Status
+            </label>
+
+            <select id="agentStatus">
+
+                <option value="working">
+                    Working
+                </option>
+
+                <option value="idle">
+                    Available
+                </option>
+
+                <option value="break">
+                    On Break
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Current Task
+            </label>
+
+            <input
+                id="agentTask"
+                placeholder="What is this agent doing?"
+            >
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="button"
+                id="cancelModal"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="button primary"
+                id="saveAgent"
+            >
+                Save Agent
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   TK GLASS STUDIO AGENT ENGINE
+========================================================= */
+
+const agents = [
+
+    {
+        name: "Nova",
+        role: "Google Ads Specialist",
+        department: "Marketing",
+        status: "working",
+        task: "Analysing Google Ads performance"
+    },
+
+    {
+        name: "Orbit",
+        role: "Campaign Strategist",
+        department: "Marketing",
+        status: "working",
+        task: "Building campaign strategy"
+    },
+
+    {
+        name: "Atlas",
+        role: "Strategy Agent",
+        department: "Strategy",
+        status: "working",
+        task: "Planning Waimarino project"
+    },
+
+    {
+        name: "Quinn",
+        role: "Quote Specialist",
+        department: "Sales & Quotes",
+        status: "working",
+        task: "Preparing client quote"
+    },
+
+    {
+        name: "Milo",
+        role: "Client Follow-up Agent",
+        department: "Sales & Quotes",
+        status: "working",
+        task: "Following up client enquiries"
+    },
+
+    {
+        name: "Pixel",
+        role: "3D Design Agent",
+        department: "Design",
+        status: "working",
+        task: "Creating 3D balustrade visual"
+    },
+
+    {
+        name: "Sketch",
+        role: "Drawing Specialist",
+        department: "Design",
+        status: "working",
+        task: "Checking panel layout"
+    },
+
+    {
+        name: "Sage",
+        role: "Compliance Specialist",
+        department: "Compliance",
+        status: "working",
+        task: "Checking NZS 4223 requirements"
+    },
+
+    {
+        name: "Bolt",
+        role: "Operations Agent",
+        department: "Operations",
+        status: "idle",
+        task: "Available — waiting for work"
+    },
+
+    {
+        name: "Echo",
+        role: "Research Agent",
+        department: "Research",
+        status: "idle",
+        task: "Reading the knowledge base"
+    }
+
+];
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const villageView =
+    document.getElementById("villageView");
+
+const departmentView =
+    document.getElementById("departmentView");
+
+const village =
+    document.getElementById("village");
+
+const office =
+    document.getElementById("office");
+
+const officeAgents =
+    document.getElementById("officeAgents");
+
+const agentList =
+    document.getElementById("agentList");
+
+const agentCard =
+    document.getElementById("agentCard");
+
+const modal =
+    document.getElementById("agentModal");
+
+
+let currentDepartment = null;
+let editingAgentIndex = null;
+
+
+/* =========================================================
+   DEPARTMENT CLICK
+========================================================= */
+
+document
+    .querySelectorAll(".department")
+    .forEach(department => {
+
+        department.addEventListener("click", () => {
+
+            currentDepartment =
+                department.dataset.department;
+
+            openDepartment(currentDepartment);
+
+        });
+
+    });
+
+
+/* =========================================================
+   OPEN DEPARTMENT
+========================================================= */
+
+function openDepartment(department) {
+
+    currentDepartment = department;
+
+    villageView.classList.add("hidden");
+
+    departmentView.classList.add("active");
+
+    document.getElementById(
+        "departmentTitle"
+    ).textContent = department;
+
+    const descriptions = {
+
+        "Marketing":
+            "Attract · Engage · Grow",
+
+        "Strategy":
+            "Plan · Prioritise · Lead",
+
+        "Sales & Quotes":
+            "Quotes · Clients · Convert",
+
+        "Design":
+            "Visualise · Detail · Deliver",
+
+        "Compliance":
+            "Standards · Safety · Confidence",
+
+        "Operations":
+            "Schedule · Install · Support",
+
+        "Research":
+            "Explore · Learn · Innovate"
+
+    };
+
+    document.getElementById(
+        "departmentDescription"
+    ).textContent =
+        descriptions[department] || "";
+
+    renderDepartment();
+
+    animateOfficeEntrance();
+
+}
+
+
+/* =========================================================
+   BACK TO VILLAGE
+========================================================= */
+
+document
+    .getElementById("backVillage")
+    .addEventListener("click", () => {
+
+        departmentView.classList.remove("active");
+
+        villageView.classList.remove("hidden");
+
+        currentDepartment = null;
+
+    });
+
+
+/* =========================================================
+   OPEN ROOF
+========================================================= */
+
+document
+    .getElementById("openRoof")
+    .addEventListener("click", () => {
+
+        office.classList.toggle("roof-open");
+
+    });
+
+
+/* =========================================================
+   RENDER DEPARTMENT
+========================================================= */
+
+function renderDepartment() {
+
+    officeAgents.innerHTML = "";
+
+    agentList.innerHTML = "";
+
+    const departmentAgents =
+        agents.filter(
+            agent =>
+                agent.department === currentDepartment
+        );
+
+    document.getElementById(
+        "detailAgentCount"
+    ).textContent =
+        `${departmentAgents.length} agents`;
+
+
+    departmentAgents.forEach(
+        (agent, localIndex) => {
+
+            createOfficeAgent(
+                agent,
+                localIndex
+            );
+
+            createAgentListRow(
+                agent,
+                agents.indexOf(agent)
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CREATE OFFICE BOT
+========================================================= */
+
+function createOfficeAgent(agent,index) {
+
+    const bot =
+        document.createElement("div");
+
+    bot.className =
+        `agent ${agent.status}`;
+
+    bot.style.setProperty(
+        "--agent-color",
+        departmentColor(agent.department)
+    );
+
+    bot.style.left =
+        `${18 + (index * 15) % 65}%`;
+
+    bot.style.top =
+        `${22 + (index * 17) % 52}%`;
+
+
+    bot.innerHTML = `
+
+        <div class="agent-head">
+
+            <div class="agent-screen"></div>
+
+            <div class="agent-eye left"></div>
+            <div class="agent-eye right"></div>
+
+        </div>
+
+        <div class="agent-body">
+            <span class="agent-tk">TK</span>
+        </div>
+
+        <div class="agent-leg left"></div>
+        <div class="agent-leg right"></div>
+
+        <div class="shoe ${shoeClass(index)} left"></div>
+        <div class="shoe ${shoeClass(index)} right"></div>
+
+    `;
+
+
+    bot.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            showAgentCard(
+                agent,
+                bot
+            );
+
+        }
+    );
+
+
+    officeAgents.appendChild(bot);
+
+}
+
+
+/* =========================================================
+   AGENT LIST
+========================================================= */
+
+function createAgentListRow(
+    agent,
+    index
+) {
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "agent-row";
+
+    row.innerHTML = `
+
+        <div class="mini-bot"></div>
+
+        <div class="agent-row-info">
+
+            <strong>
+                ${escapeHtml(agent.name)}
+            </strong>
+
+            <span>
+                ${escapeHtml(agent.role)}
+            </span>
+
+            <span class="agent-status ${agent.status}">
+                ● ${formatStatus(agent.status)}
+            </span>
+
+        </div>
+
+        <button
+            class="edit-agent"
+            data-index="${index}"
+        >
+            Edit
+        </button>
+
+    `;
+
+
+    row
+        .querySelector(".edit-agent")
+        .addEventListener(
+            "click",
+            () => editAgent(index)
+        );
+
+
+    agentList.appendChild(row);
+
+}
+
+
+/* =========================================================
+   AGENT CARD
+========================================================= */
+
+function showAgentCard(
+    agent,
+    bot
+) {
+
+    const officeRect =
+        office.getBoundingClientRect();
+
+    const botRect =
+        bot.getBoundingClientRect();
+
+
+    agentCard.innerHTML = `
+
+        <div class="agent-card-header">
+
+            <div>
+
+                <h3>
+                    ${escapeHtml(agent.name)}
+                </h3>
+
+                <div class="agent-role">
+                    ${escapeHtml(agent.role)}
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="agent-task">
+            ${escapeHtml(agent.task)}
+        </div>
+
+        <span class="status-badge">
+            ${formatStatus(agent.status)}
+        </span>
+
+    `;
+
+
+    agentCard.style.left =
+        `${Math.min(
+            botRect.left -
+            officeRect.left +
+            40,
+            officeRect.width - 235
+        )}px`;
+
+
+    agentCard.style.top =
+        `${Math.max(
+            botRect.top -
+            officeRect.top -
+            20,
+            10
+        )}px`;
+
+
+    agentCard.classList.add("show");
+
+}
+
+
+/* =========================================================
+   ADD AGENT
+========================================================= */
+
+function openAddAgent(
+    department = currentDepartment
+) {
+
+    editingAgentIndex = null;
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Add Agent";
+
+    document.getElementById(
+        "agentName"
+    ).value = "";
+
+    document.getElementById(
+        "agentRole"
+    ).value = "";
+
+    document.getElementById(
+        "agentTask"
+    ).value = "";
+
+    document.getElementById(
+        "agentDepartment"
+    ).value =
+        department || "Marketing";
+
+    document.getElementById(
+        "agentStatus"
+    ).value =
+        "idle";
+
+    modal.classList.add("show");
+
+}
+
+
+/* buttons */
+
+document
+    .getElementById("addAgentButton")
+    .addEventListener(
+        "click",
+        () => openAddAgent()
+    );
+
+document
+    .getElementById("sidebarAddAgent")
+    .addEventListener(
+        "click",
+        () => openAddAgent()
+    );
+
+document
+    .getElementById("detailAddAgent")
+    .addEventListener(
+        "click",
+        () => openAddAgent(currentDepartment)
+    );
+
+document
+    .getElementById("panelAddAgent")
+    .addEventListener(
+        "click",
+        () => openAddAgent(currentDepartment)
+    );
+
+
+/* =========================================================
+   EDIT AGENT
+========================================================= */
+
+function editAgent(index) {
+
+    const agent =
+        agents[index];
+
+    editingAgentIndex =
+        index;
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "Edit Agent";
+
+    document.getElementById(
+        "agentName"
+    ).value =
+        agent.name;
+
+    document.getElementById(
+        "agentRole"
+    ).value =
+        agent.role;
+
+    document.getElementById(
+        "agentDepartment"
+    ).value =
+        agent.department;
+
+    document.getElementById(
+        "agentStatus"
+    ).value =
+        agent.status;
+
+    document.getElementById(
+        "agentTask"
+    ).value =
+        agent.task;
+
+    modal.classList.add("show");
+
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+document
+    .getElementById("saveAgent")
+    .addEventListener(
+        "click",
+        () => {
+
+            const name =
+                document
+                    .getElementById("agentName")
+                    .value
+                    .trim();
+
+            const role =
+                document
+                    .getElementById("agentRole")
+                    .value
+                    .trim();
+
+            const department =
+                document
+                    .getElementById("agentDepartment")
+                    .value;
+
+            const status =
+                document
+                    .getElementById("agentStatus")
+                    .value;
+
+            const task =
+                document
+                    .getElementById("agentTask")
+                    .value
+                    .trim();
+
+
+            if (!name || !role) {
+
+                alert(
+                    "Please enter an agent name and role."
+                );
+
+                return;
+
+            }
+
+
+            const newAgent = {
+
+                name,
+
+                role,
+
+                department,
+
+                status,
+
+                task:
+                    task ||
+                    "Available — waiting for work"
+
+            };
+
+
+            if (
+                editingAgentIndex === null
+            ) {
+
+                agents.push(
+                    newAgent
+                );
+
+            } else {
+
+                agents[
+                    editingAgentIndex
+                ] =
+                    newAgent;
+
+            }
+
+
+            modal.classList.remove(
+                "show"
+            );
+
+
+            updateCounts();
+
+
+            if (currentDepartment) {
+
+                renderDepartment();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   CANCEL
+========================================================= */
+
+document
+    .getElementById("cancelModal")
+    .addEventListener(
+        "click",
+        () => {
+
+            modal.classList.remove(
+                "show"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   MOVE AGENTS
+========================================================= */
+
+document
+    .getElementById("moveAgents")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .querySelectorAll(
+                    "#village .agent"
+                )
+                .forEach(agent => {
+
+                    agent.style.left =
+                        `${8 + Math.random() * 84}%`;
+
+                    agent.style.top =
+                        `${15 + Math.random() * 68}%`;
+
+                });
+
+        }
+    );
+
+
+/* =========================================================
+   OFFICE MOVEMENT
+========================================================= */
+
+function animateOfficeEntrance() {
+
+    setTimeout(() => {
+
+        document
+            .querySelectorAll(
+                "#officeAgents .agent"
+            )
+            .forEach((agent,index) => {
+
+                agent.style.left =
+                    `${15 + Math.random() * 70}%`;
+
+                agent.style.top =
+                    `${20 + Math.random() * 60}%`;
+
+            });
+
+    },300);
+
+}
+
+
+/* =========================================================
+   PERIODIC AGENT MOVEMENT
+========================================================= */
+
+setInterval(() => {
+
+    document
+        .querySelectorAll(
+            "#village .agent"
+        )
+        .forEach(agent => {
+
+            if (
+                agent.classList.contains(
+                    "working"
+                )
+            ) {
+
+                agent.style.left =
+                    `${8 + Math.random() * 84}%`;
+
+                agent.style.top =
+                    `${15 + Math.random() * 68}%`;
+
+            }
+
+        });
+
+
+    document
+        .querySelectorAll(
+            "#officeAgents .agent"
+        )
+        .forEach(agent => {
+
+            agent.style.left =
+                `${12 + Math.random() * 76}%`;
+
+            agent.style.top =
+                `${18 + Math.random() * 65}%`;
+
+        });
+
+},7000);
+
+
+/* =========================================================
+   UPDATE COUNTS
+========================================================= */
+
+function updateCounts() {
+
+    const departments = [
+        "Marketing",
+        "Strategy",
+        "Sales & Quotes",
+        "Design",
+        "Compliance",
+        "Operations",
+        "Research"
+    ];
+
+
+    departments.forEach(
+        department => {
+
+            const count =
+                agents.filter(
+                    agent =>
+                        agent.department === department
+                ).length;
+
+            const element =
+                document.querySelector(
+                    `[data-count="${department}"]`
+                );
+
+            if (element) {
+
+                element.textContent =
+                    count;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalAgents"
+    ).textContent =
+        agents.length;
+
+
+    document.getElementById(
+        "workingAgents"
+    ).textContent =
+        agents.filter(
+            a => a.status === "working"
+        ).length;
+
+
+    document.getElementById(
+        "idleAgents"
+    ).textContent =
+        agents.filter(
+            a =>
+                a.status !== "working"
+        ).length;
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function departmentColor(
+    department
+) {
+
+    const colors = {
+
+        "Marketing":
+            "#20a4ff",
+
+        "Strategy":
+            "#ffb340",
+
+        "Sales & Quotes":
+            "#ff5ebc",
+
+        "Design":
+            "#39d9ff",
+
+        "Compliance":
+            "#39dc91",
+
+        "Operations":
+            "#9c7cff",
+
+        "Research":
+            "#8b8cff"
+
+    };
+
+    return (
+        colors[department] ||
+        "#20a4ff"
+    );
+
+}
+
+
+function shoeClass(index) {
+
+    const shoes = [
+
+        "shoe-red",
+        "shoe-blue",
+        "shoe-green",
+        "shoe-purple",
+        "shoe-white",
+        "shoe-orange"
+
+    ];
+
+    return shoes[
+        index %
+        shoes.length
+    ];
+
+}
+
+
+function formatStatus(
+    status
+) {
+
+    const values = {
+
+        working:
+            "WORKING",
+
+        idle:
+            "AVAILABLE",
+
+        break:
+            "ON BREAK"
+
+    };
+
+    return (
+        values[status] ||
+        "AVAILABLE"
+    );
+
+}
+
+
+function escapeHtml(
+    value
+) {
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   CLOSE AGENT CARD
+========================================================= */
+
+village.addEventListener(
+    "click",
+    () => {
+
+        agentCard.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        event => {
+
+            const query =
+                event.target.value
+                    .toLowerCase()
+                    .trim();
+
+
+            document
+                .querySelectorAll(
+                    "#village .agent"
+                )
+                .forEach(agent => {
+
+                    const name =
+                        agent.dataset.name
+                            .toLowerCase();
+
+                    const department =
+                        agent.dataset.department
+                            .toLowerCase();
+
+                    const match =
+                        !query ||
+                        name.includes(query) ||
+                        department.includes(query);
+
+                    agent.style.opacity =
+                        match
+                            ? "1"
+                            : ".15";
+
+                });
+
+        }
+    );
+
+
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+updateCounts();
+
+</script>
+
+</body>
+</html>
